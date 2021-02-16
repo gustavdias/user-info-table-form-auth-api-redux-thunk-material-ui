@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SignUp from "./containers/SignUp/SignUp";
-import LogIn from "./containers/LogIn/LogIn";
+import LogIn from "./containers/LogIn/Login";
 import Navbar from "./components/Navbar/Navbar";
 import { Route, Switch } from "react-router-dom";
 import UserInfo from "./containers/UserInfo/UserInfo"
