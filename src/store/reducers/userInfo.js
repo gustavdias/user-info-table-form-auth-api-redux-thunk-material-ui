@@ -9,19 +9,19 @@ const initState = {
   };
   const userInfo = (state = initState, action) => {
     switch (action.type) {
-      case "SIGN_UP_REQUEST":
+      case "FETCH_POSTS_REQUEST":
         return {
           ...state,
           loading: true,
           error: null,
         };
-      case "SIGN_UP_SUCCESS":
+      case "FETCH_POSTS_SUCCESS":
         return {
           ...state,
           loading: false,
           items: action.payload,
         };
-      case "SIGN_UP_FAILURE":
+      case "FETCH_POSTS_FAILURE":
         return {
           ...state,
           loading: false,
