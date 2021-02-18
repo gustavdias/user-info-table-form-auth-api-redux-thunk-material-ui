@@ -5,10 +5,10 @@ import  userInfo  from "./reducers/userInfo";
 
 import thunk from "redux-thunk";
 
-const composeEnhancers =
-  process.env.REACT_APP_NODE_ENVX === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : null || compose;
+// const composeEnhancers =
+//   process.env.REACT_APP_NODE_ENVX === "development"
+//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+//     : null || compose;
 
 //combine reducers
 const rootReducer = combineReducers({
@@ -16,9 +16,13 @@ const rootReducer = combineReducers({
   // logoutReducer: logoutReducer,
 });
 
+// const store = createStore(
+//   userInfo,
+//   composeEnhancers(applyMiddleware(thunk))
+// );
 const store = createStore(
   userInfo,
-  composeEnhancers(applyMiddleware(thunk))
+  applyMiddleware(thunk)
 );
 
 export default store;
