@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,10 +13,32 @@ import useStyles from "./LoginStyle";
 import Container from "@material-ui/core/Container";
 import Copyright from "../../components/Copyright/Copyright";
 import Links from "@material-ui/core/Link";
+import { auth } from "../../store/actions/auth";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
-export default function SignIn() {
+export default function Login() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  const onChangeEmailHandler = (event) => {
+    const emailValue = event.target.value;
+    setEmail(emailValue);
+  };
+  const onChangePasswordHandler = (event) => {
+    const passwordValue = event.target.value;
+    setPassword(passwordValue);
+  };
+
+  const onSubmitLoginHandler = (e) => {
+    e.preventDefault();
+
+    dispatch(auth(email, password));
+    console.log(email, password);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -28,7 +50,11 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form} noValidate>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={onSubmitLoginHandler}
+        >
           <TextField
             variant="outlined"
             margin="normal"
@@ -39,6 +65,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={onChangeEmailHandler}
+            value={email}
           />
           <TextField
             variant="outlined"
@@ -50,6 +78,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={onChangePasswordHandler}
+            value={password}
           />
           {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -62,7 +92,7 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
           <Grid container>
             <Grid item xs>

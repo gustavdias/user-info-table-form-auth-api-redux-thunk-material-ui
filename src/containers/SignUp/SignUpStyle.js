@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-
+//makeStyles is just for hooks?
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),

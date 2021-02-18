@@ -1,8 +1,5 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
-// import { signUpReducer } from "./reducers/signUp";
-import { loginReducer } from "./reducers/login";
-import { logoutReducer } from "./reducers/logout";
-import signUpReducer from "./reducers/signUp"
+import  loginReducer  from "./reducers/auth";
 import  userInfo  from "./reducers/userInfo";
 
 
@@ -15,9 +12,8 @@ const composeEnhancers =
 
 //combine reducers
 const rootReducer = combineReducers({
-  signUpReducer: signUpReducer,
   loginReducer: loginReducer,
-  logoutReducer: logoutReducer,
+  // logoutReducer: logoutReducer,
 });
 
 const store = createStore(
