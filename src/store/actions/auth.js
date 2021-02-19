@@ -45,10 +45,9 @@ export const checkAuthTimeout = (expirationTime) => {
   };
 };
 
-
-
 //! Posting the data for auth on the server - firebase
 export const auth = (email, password, isSignup) => {
+  console.log("auth before dispatch: ", email, password, isSignup);
   return (dispatch) => {
     dispatch(authStart());
     const authData = {
@@ -56,24 +55,37 @@ export const auth = (email, password, isSignup) => {
       password: password,
       returnSecureToken: true,
     };
-  
+
+    // export const auth = (firstName, lastName, email, password, isSignup) => {
+    //   return (dispatch) => {
+    //     dispatch(authStart());
+    //     const authData = {
+    //       firstName:firstName,
+    //       lastName:lastName,
+    //       email: email,
+    //       password: password,
+    //       returnSecureToken: true,
+    //     };
 
     //Web API Key
-    const myWebAPIKey = "AIzaSyA4v9xe--JQo625ueHyvbbUKWOKjOViuyc";
+    const myWebAPIKey = "AIzaSyDFHy_UAYDMORaJzBQXigUSfXmOci7wJ0k";
+
+    // ("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA4v9xe--JQo625ueHyvbbUKWOKjOViuyc");
+    // ("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA4v9xe--JQo625ueHyvbbUKWOKjOViuyc");
 
     let signUpUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${myWebAPIKey}`;
-    let signInUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${myWebAPIKey}`;
+    let loginUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${myWebAPIKey}`;
 
-    let url = signUpUrl;
+    let url = loginUrl;
     if (!isSignup) {
-      url = signInUrl;
+      url = signUpUrl;
     }
 
-      axios
+    axios
       .post(url, authData)
       .then((response) => {
-        console.log("!!!---response: " ,response);
-
+        console.log("!!!---response: ", response);
+        console.log("--- post request on firebase: ", url, authData);
         //?Persistent Auth state with localStorage
         //! Volta!!!! Persistent Auth state with localStorage - local storage API is baked into the browser
 

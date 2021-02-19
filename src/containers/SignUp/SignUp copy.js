@@ -23,6 +23,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import { updateObject, checkValidity } from "../../shared/utility";
 
+
 // const styles = (theme) => ({
 //   paper: {
 //     marginTop: theme.spacing(8),
@@ -107,16 +108,16 @@ export class SignUp extends Component {
     isSignup: false,
   };
 
-  //* shared/utility.js
-  inputChangedHandler = (event, controlName) => {
+
+  emailHandler = (event) => {
     const updatedControls = updateObject(this.state.controls, {
       [controlName]: updateObject(this.state.controls[controlName], {
         value: event.target.value,
-        // valid: checkValidity(
-        //   event.target.value,
-        //   this.state.controls[controlName].validation
-        // ),
-        // touched: true,
+        valid: checkValidity(
+          event.target.value,
+          this.state.controls[controlName].validation
+        ),
+        touched: true,
       }),
     });
     this.setState({ controls: updatedControls });
@@ -141,13 +142,16 @@ export class SignUp extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    console.log("passing actions: ", this.state.controls, this.state.fields);
+    console.log(
+      "passing actions: ",
+      this.state.fields
+    );
     this.props.onAuth(
       // this.state.controls.firstName.value,
       // this.state.controls.lastName.value,
-      this.state.controls.email.value,
-      this.state.controls.password.value,
-      // this.state.fields.value,
+      // this.state.controls.email.value,
+      // this.state.controls.password.value,
+      this.state.fields.value,
       this.state.isSignup
     );
   };
@@ -183,6 +187,8 @@ export class SignUp extends Component {
                   label="First Name"
                   autoFocus
                   onChange={(e) => this.change(e)}
+                  changed={(event) => this.emailHandler(event)}
+
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -195,6 +201,8 @@ export class SignUp extends Component {
                   name="lastName"
                   autoComplete="lname"
                   onChange={(e) => this.change(e)}
+                  changed={(event) => this.passwordHandler(event)}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -207,7 +215,8 @@ export class SignUp extends Component {
                   name="email"
                   autoComplete="email"
                   onChange={(e) => this.change(e)}
-                  onChange={(event) => this.inputChangedHandler(event, "email")}
+                  changed={(event) => this.inputChangedHandler(event, formElement.id)}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -221,7 +230,8 @@ export class SignUp extends Component {
                   id="password"
                   autoComplete="current-password"
                   onChange={(e) => this.change(e)}
-                  onChange={(event) => this.inputChangedHandler(event, "password")}
+                  changed={(event) => this.inputChangedHandler(event, formElement.id)}
+
                 />
               </Grid>
               {/*  <Grid item xs={12}>
@@ -261,6 +271,7 @@ export class SignUp extends Component {
           <br />
           <Typography>{JSON.stringify(this.state.fields, null, 2)}</Typography>
           {/* <Typography>{this.state.fields}</Typography> */}
+
         </div>
         <Box mt={5}>
           <Copyright />
@@ -286,7 +297,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password, isSignup) =>
-      dispatch(actions.auth(email, password, isSignup)),
+      dispatch(actions.auth( email, password, isSignup)),
     //*use building to change the redirect path back if I think that the user is actually not building a burger anymore
     // onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/")),
   };

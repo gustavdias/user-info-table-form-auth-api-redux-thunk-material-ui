@@ -21,6 +21,7 @@ export default function Login() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const isSignup = "false";
 
   const dispatch = useDispatch();
 
@@ -36,8 +37,8 @@ export default function Login() {
   const onSubmitLoginHandler = (e) => {
     e.preventDefault();
 
-    dispatch(auth(email, password));
-    console.log(email, password);
+    dispatch(auth(email, password, isSignup));
+    console.log(email, password, isSignup);
   };
 
   return (
