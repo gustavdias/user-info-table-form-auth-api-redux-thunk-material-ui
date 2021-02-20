@@ -172,7 +172,7 @@ export class SignUp extends Component {
             onSubmit={this.submitHandler}
           >
             <Grid container spacing={2}>
-         {/*      <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="fname"
                   name="firstName"
@@ -182,11 +182,7 @@ export class SignUp extends Component {
                   id="firstName"
                   label="First Name"
                   autoFocus
-                  // onChange={(e) => this.change(e)}
-                  onChange={
-                    ((event) => this.inputChangedHandler(event, "firstName"),
-                    (e) => this.change(e))
-                  }
+                  onChange={(e) => this.change(e)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -198,13 +194,9 @@ export class SignUp extends Component {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
-                  // onChange={(e) => this.change(e)}
-                  onChange={
-                    ((event) => this.inputChangedHandler(event, "lastName"),
-                    (e) => this.change(e))
-                  }
+                  onChange={(e) => this.change(e)}
                 />
-              </Grid> */}
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -214,7 +206,7 @@ export class SignUp extends Component {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  // onChange={(e) => this.change(e)}
+                  onChange={(e) => this.change(e)}
                   onChange={
                     ((event) => this.inputChangedHandler(event, "email"),
                     (e) => this.change(e))
@@ -231,7 +223,7 @@ export class SignUp extends Component {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  // onChange={(e) => this.change(e)}
+                  onChange={(e) => this.change(e)}
                   onChange={(event) =>
                     this.inputChangedHandler(event, "password")
                   }

@@ -12,6 +12,7 @@ const initialState = {
   error: null,
   loading: false,
   authRedirectPath: "/",
+  test: "that's a test"
 };
 
 const authStart = (state, action) => {

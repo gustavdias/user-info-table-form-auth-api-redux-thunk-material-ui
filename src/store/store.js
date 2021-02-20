@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
-import  loginReducer  from "./reducers/auth";
+import  authReducer  from "./reducers/auth";
 import  userInfo  from "./reducers/userInfo";
 
 
@@ -12,8 +12,8 @@ import thunk from "redux-thunk";
 
 //combine reducers
 const rootReducer = combineReducers({
-  loginReducer: loginReducer,
-  // logoutReducer: logoutReducer,
+  authReducer: authReducer,
+  userInfo: userInfo,
 });
 
 // const store = createStore(
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 //   composeEnhancers(applyMiddleware(thunk))
 // );
 const store = createStore(
-  userInfo,
+  rootReducer,
   applyMiddleware(thunk)
 );
 
