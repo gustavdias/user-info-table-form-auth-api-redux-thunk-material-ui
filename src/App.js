@@ -22,8 +22,8 @@ export class App extends Component {
     );
 
     //if user auth
-    if (true) {
-      // if (this.props.isAuthenticated) {
+    // if (true) {
+      if (this.props.isAuthenticated) {
       routes = (
         <Switch>
           <Route path="/logout" component={Logout} />

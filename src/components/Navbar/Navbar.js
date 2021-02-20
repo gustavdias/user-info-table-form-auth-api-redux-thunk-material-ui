@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export default function Navbar(props) {
   const classes = useStyles();
 
-  const notAuth = (
+  let auth = (
     <React.Fragment>
       <Button color="inherit" component={Link} to="/login">
         Login
@@ -21,7 +21,15 @@ export default function Navbar(props) {
       </Button>
     </React.Fragment>
   );
-console.log("props.isAuthenticated:" ,props.isAuthenticated, props)
+  if (props.isAuth) {
+    auth = (
+      <Button color="inherit" component={Link} to="/logout">
+        Logout
+      </Button>
+    );
+  }
+
+  console.log("props.isAuth:", props.isAuth);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -37,13 +45,7 @@ console.log("props.isAuthenticated:" ,props.isAuthenticated, props)
           <Typography variant="h6" className={classes.title}>
             UserInfo App
           </Typography>
-          {!props ? (
-            { notAuth }
-          ) : (
-            <Button color="inherit" component={Link} to="/logout">
-              Logout
-            </Button>
-          )}
+          {auth}
         </Toolbar>
       </AppBar>
     </div>
