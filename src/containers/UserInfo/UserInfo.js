@@ -31,18 +31,18 @@ const rows = [
 
 export default function BasicTable() {
   const classes = useStyles();
-
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.userInfo);
   useEffect(() => {
+    console.log("useEffect = componentDidMount")
     dispatch(fetchPosts());
   }, []);
-
+console.log(state)
   const renderUserInfo = () => {
     if (state.loading) {
       return <h1>loading...</h1>;
     }
-    return state.userInfo.items.map((eL) => {
+    return state.items.map((eL) => {
       return <h3 key={eL.id}>{eL.title}</h3>;
     });
   };

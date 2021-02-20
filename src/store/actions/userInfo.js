@@ -14,10 +14,10 @@ export const fetchPosts = () => {
   
       try {
         const response = await Axios.get(
-          firebaseUrl
+          jphUrl
         ); //with async await you can be returning something that is not an object ot a function, but redux and react only cares about what the actionCreators returns,which is the outer function!!!
         //you need to dispatch the action manually (because we kind of pause the app)
-        console.log(response.data);
+        console.log("response.data: " , response.data);
   
         dispatch({ type: "FETCH_POSTS_SUCCESS", payload: response.data });
       } catch (error) {
